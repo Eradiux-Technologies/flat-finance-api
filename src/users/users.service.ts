@@ -3,18 +3,19 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { EntityCondition } from 'src/utils/types/entity-condition.type';
 import { IPaginationOptions } from 'src/utils/types/pagination-options';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { CreateUserRequestDto } from './dto/request/create-user-request.dto';
+import { UpdateUserRequestDto } from './dto/request/update-user-request.dto';
+import { IUsersService } from './interfaces/users.iservice';
 
 @Injectable()
-export class UsersService {
+export class UsersService implements IUsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createProfileDto: CreateUserDto) {
+  create(createProfileDto: CreateUserRequestDto) {
     return this.usersRepository.save(
       this.usersRepository.create(createProfileDto),
     );
@@ -33,7 +34,7 @@ export class UsersService {
     });
   }
 
-  update(id: number, updateProfileDto: UpdateUserDto) {
+  update(id: string, updateProfileDto: UpdateUserRequestDto) {
     return this.usersRepository.save(
       this.usersRepository.create({
         id,
@@ -42,7 +43,7 @@ export class UsersService {
     );
   }
 
-  async softDelete(id: number): Promise<void> {
+  async softDelete(id: string): Promise<void> {
     await this.usersRepository.softDelete(id);
   }
 }

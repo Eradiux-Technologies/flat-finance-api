@@ -45,7 +45,7 @@ import twitterConfig from './config/twitter.config';
         twitterConfig,
         appleConfig,
       ],
-      envFilePath: ['.env.development'],
+      envFilePath: ['.env'],
     }),
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmConfigService,
