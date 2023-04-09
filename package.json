@@ -1,7 +1,7 @@
 {
-  "name": "nestjs-boilerplate",
+  "name": "flat-finance",
   "version": "0.0.1",
-  "description": "",
+  "description": "API Backend for Flat Finance",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
